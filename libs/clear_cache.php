@@ -4,7 +4,6 @@ App::import('Folder');
 class ClearCache {
 
 	function run() {
-		clearCache();
 		$return = array();
 
 		$paths = array(
