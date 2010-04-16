@@ -6,12 +6,12 @@ class ClearCache {
 	function run() {
 		clearCache();
 		$return = array();
-		$paths = array(
-			TMP . 'cache' . DS . 'models',
-			TMP . 'cache' . DS . 'persistent',
-			TMP . 'cache' . DS . 'views',
-		);
 
+		$paths = array(
+			CACHE . 'models',
+			CACHE . 'persistent',
+			CACHE . 'views',
+		);
 		$folder = new Folder();
 
 		foreach ($paths as $path) {
