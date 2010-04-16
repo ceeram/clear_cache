@@ -1,0 +1,11 @@
+Usage:
+
+Run from your console:
+"cake clear_cache"
+
+Run from your app:
+<?php
+App::import('Libs', 'ClearCache.ClearCache');
+$ClearCache = new ClearCache();
+$ClearCache->run();
+?>
