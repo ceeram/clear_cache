@@ -7,5 +7,7 @@ Run from your app:
 <?php
 App::import('Libs', 'ClearCache.ClearCache');
 $ClearCache = new ClearCache();
-$ClearCache->run();
+$output = $ClearCache->run();
 ?>
+
+run() returns an array of deleted files
