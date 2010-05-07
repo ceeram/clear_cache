@@ -31,7 +31,7 @@ class ClearCache {
  * @return array associative array with cleanup results
  * @access public
  */
-	public function engines() {
+	function engines() {
 		$result = array();
 
 		$keys = Cache::configured();
@@ -54,7 +54,7 @@ class ClearCache {
  * @return array associative array with cleanup results
  * @access public
  */
-	public function files() {
+	function files() {
 		$deleted = $error = array();
 
 		if ($folders = func_get_args()) {
@@ -82,7 +82,7 @@ class ClearCache {
  * @return array associative array with cleanup results
  * @access public
  */
-	public function run() {
+	function run() {
 		$files = $this->files();
 		$engines = $this->engines();
 
