@@ -1,14 +1,57 @@
 <?php
+/**
+ * ClearCache shell
+ *
+ * PHP versions 4 and 5
+ *
+ * Copyright 2010, Marc Ypes, The Netherlands
+ *
+ * Licensed under The MIT License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @package       app
+ * @subpackage    app.plugins.clear_cache.vendors.shells
+ * @copyright     2010 Marc Ypes, The Netherlands
+ * @author        Ceeram
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
 
+/**
+ * Helps clear content of CACHE subfolders as well as content in cache engines from console
+ *
+ * @package       app
+ * @subpackage    app.plugins.clear_cache.vendors.shells
+ * @property      ClearCache $_Cleaner
+ */
 class ClearCacheShell extends Shell {
 
+/**
+ * ClearCache instance
+ *
+ * @var ClearCache
+ * @access protected
+ */
 	protected $_Cleaner;
 
+/**
+ * Main shell method
+ *
+ * Clears content of CACHE subfolders and configured cache engines
+ *
+ * @return array associative array with cleanup results
+ * @access public
+ */
 	public function main()	{
 		$this->files();
 		$this->engines();
 	}
 
+/**
+ * Clears content of cache engines
+ *
+ * @return void
+ * @access public
+ */
 	public function engines() {
 		$output = $this->_Cleaner->engines($this->args);
 
@@ -17,6 +60,12 @@ class ClearCacheShell extends Shell {
 		}
 	}
 
+/**
+ * Clears content of CACHE subfolders
+ *
+ * @return void
+ * @access public
+ */
 	public function files() {
 		$output = $this->_Cleaner->files($this->args);
 
@@ -27,10 +76,18 @@ class ClearCacheShell extends Shell {
 		}
 	}
 
+/**
+ * Shell startup
+ *
+ * Initializes $_Cleaner property
+ *
+ * @return void
+ * @access public
+ */
 	public function startup() {
 		App::import('Libs', 'ClearCache.ClearCache');
 		$this->_Cleaner = new ClearCache();
 	}
-}
 
+}
 ?>
