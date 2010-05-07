@@ -1,14 +1,26 @@
 <?php
 
-App::import('Libs', 'ClearCache.ClearCache');
 class ClearCacheShell extends Shell {
 
-	function main()	{
-		$ClearCache = new ClearCache();
-		$output = $ClearCache->run();
-		foreach ($output as $out) {
-			$this->out('Deleted ' . $out);
+	protected $_Cleaner;
+
+	public function main()	{
+		$this->files();
+	}
+
+	public function files() {
+		$output = $this->_Cleaner->files($this->args);
+
+		foreach ($output as $result => $files) {
+			foreach ($files as $file) {
+				$this->out($result . ': ' . $file);
+			}
 		}
+	}
+
+	public function startup() {
+		App::import('Libs', 'ClearCache.ClearCache');
+		$this->_Cleaner = new ClearCache();
 	}
 }
 

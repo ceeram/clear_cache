@@ -1,30 +1,27 @@
 <?php
 
-App::import('Folder');
 class ClearCache {
 
-	function run() {
-		$return = array();
+	public function files($folders = array()) {
+		$deleted = $error = array();
 
-		$paths = array(
-			CACHE . 'models',
-			CACHE . 'persistent',
-			CACHE . 'views',
-		);
-		$folder = new Folder();
+		if ($folders) {
+			$files = glob(CACHE . '{' . implode(',', $folders) . '}' . DS . '*', GLOB_BRACE);
+		} else {
+			$files = glob(CACHE . '*' . DS . '*');
+		}
 
-		foreach ($paths as $path) {
-			$folder->cd($path);
-			$files = $folder->read();
-			foreach ($files[1] as $file) {
-				if ($file == 'empty') {
-					continue;
+		foreach ($files as $file) {
+			if (is_file($file) && basename($file) !== 'empty') {
+				if (unlink($file)) {
+					$deleted[] = $file;
+				} else {
+					$error[] = $file;
 				}
-				$return[] = $path . DS . $file;
-				unlink($path . DS . $file);
 			}
 		}
-		return $return;
+
+		return compact('deleted', 'error');
 	}
 }
 ?>
