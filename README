@@ -15,6 +15,8 @@ Run from your app:
 App::import('Libs', 'ClearCache.ClearCache');
 $ClearCache = new ClearCache();
 
+$output = $ClearCache->run();
+
 $output = $ClearCache->files();
 $output = $ClearCache->files('views');
 $output = $ClearCache->files('models', 'persistent');
@@ -34,4 +36,16 @@ engines() returns an associative array of result
 array(
 	'default' => true,
 	'_cake_core_'   => false
+)
+
+run() returns an associative array of result
+array(
+	'files' => array(
+		'deleted' => array(...),
+		'error'   => array(...)
+	),
+	'engines' => array(
+		'default' => true,
+		'_cake_core_'   => false
+	)
 )

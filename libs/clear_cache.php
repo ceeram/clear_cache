@@ -39,5 +39,13 @@ class ClearCache {
 
 		return compact('deleted', 'error');
 	}
+
+	public function run() {
+		$files = $this->files();
+		$engines = $this->engines();
+
+		return compact('files', 'engines');
+	}
+
 }
 ?>
