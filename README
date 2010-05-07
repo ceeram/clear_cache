@@ -18,12 +18,12 @@ $ClearCache = new ClearCache();
 $output = $ClearCache->run();
 
 $output = $ClearCache->files();
-$output = $ClearCache->files('views');
-$output = $ClearCache->files('models', 'persistent');
+$output = $ClearCache->files(array('views'));
+$output = $ClearCache->files(array('models', 'persistent'));
 
 $output = $ClearCache->engines();
-$output = $ClearCache->engines('_cake_core_');
-$output = $ClearCache->engines('default', 'custom');
+$output = $ClearCache->engines(array('_cake_core_'));
+$output = $ClearCache->engines(array('default', 'custom'));
 ?>
 
 files() returns an associative array of deleted/undeleted files
