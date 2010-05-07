@@ -2,6 +2,22 @@
 
 class ClearCache {
 
+	public function engines($engines = array()) {
+		$result = array();
+
+		$keys = Cache::configured();
+
+		if ($engines) {
+			$keys = array_intersect($keys, $engines);
+		}
+
+		foreach ($keys as $key) {
+			$result[$key] = Cache::clear(false, $key);
+		}
+
+		return $result;
+	}
+
 	public function files($folders = array()) {
 		$deleted = $error = array();
 

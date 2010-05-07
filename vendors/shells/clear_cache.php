@@ -6,6 +6,15 @@ class ClearCacheShell extends Shell {
 
 	public function main()	{
 		$this->files();
+		$this->engines();
+	}
+
+	public function engines() {
+		$output = $this->_Cleaner->engines($this->args);
+
+		foreach ($output as $key => $result) {
+			$this->out($key . ': ' . ($result ? 'cleared' : 'error'));
+		}
 	}
 
 	public function files() {
