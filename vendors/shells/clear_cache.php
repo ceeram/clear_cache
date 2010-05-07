@@ -53,7 +53,7 @@ class ClearCacheShell extends Shell {
  * @access public
  */
 	public function engines() {
-		$output = $this->_Cleaner->engines($this->args);
+		$output = call_user_func_array(array(&$this->_Cleaner, 'engines'), $this->args);
 
 		foreach ($output as $key => $result) {
 			$this->out($key . ': ' . ($result ? 'cleared' : 'error'));
@@ -67,7 +67,7 @@ class ClearCacheShell extends Shell {
  * @access public
  */
 	public function files() {
-		$output = $this->_Cleaner->files($this->args);
+		$output = call_user_func_array(array(&$this->_Cleaner, 'files'), $this->args);
 
 		foreach ($output as $result => $files) {
 			foreach ($files as $file) {

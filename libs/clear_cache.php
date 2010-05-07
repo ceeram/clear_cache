@@ -27,16 +27,16 @@ class ClearCache {
 /**
  * Clears content of cache engines
  *
- * @param array $engines keys of cache engines for cleanup
+ * @param mixed any amount of strings - keys of configure cache engines
  * @return array associative array with cleanup results
  * @access public
  */
-	public function engines($engines = array()) {
+	public function engines() {
 		$result = array();
 
 		$keys = Cache::configured();
 
-		if ($engines) {
+		if ($engines = func_get_args()) {
 			$keys = array_intersect($keys, $engines);
 		}
 
@@ -50,14 +50,14 @@ class ClearCache {
 /**
  * Clears content of CACHE subfolders
  *
- * @param array $folders subfolders of CACHE folder
+ * @param mixed any amount of strings - names of CACHE subfolders
  * @return array associative array with cleanup results
  * @access public
  */
-	public function files($folders = array()) {
+	public function files() {
 		$deleted = $error = array();
 
-		if ($folders) {
+		if ($folders = func_get_args()) {
 			$files = glob(CACHE . '{' . implode(',', $folders) . '}' . DS . '*', GLOB_BRACE);
 		} else {
 			$files = glob(CACHE . '*' . DS . '*');
