@@ -61,6 +61,7 @@ class ClearCache {
 			$files = glob(CACHE . '{' . implode(',', $folders) . '}' . DS . '*', GLOB_BRACE);
 		} else {
 			$files = glob(CACHE . '*' . DS . '*');
+			$files = array_merge($files, glob(CACHE . '*'));
 		}
 
 		foreach ($files as $file) {
@@ -72,7 +73,6 @@ class ClearCache {
 				}
 			}
 		}
-
 		return compact('deleted', 'error');
 	}
 
