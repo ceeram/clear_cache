@@ -3,6 +3,7 @@ Usage:
 Run from your console:
 "cake clear_cache"
 or "cake clear_cache files"
+or "cake clear_cache files ."
 or "cake clear_cache files views"
 or "cake clear_cache files models persistent"
 or "cake clear_cache engines"
@@ -18,6 +19,7 @@ $ClearCache = new ClearCache();
 $output = $ClearCache->run();
 
 $output = $ClearCache->files();
+$output = $ClearCache->files('.');
 $output = $ClearCache->files('views');
 $output = $ClearCache->files('models', 'persistent');
 

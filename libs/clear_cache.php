@@ -50,18 +50,22 @@ class ClearCache {
 /**
  * Clears content of CACHE subfolders
  *
- * @param mixed any amount of strings - names of CACHE subfolders
+ * @param mixed any amount of strings - names of CACHE subfolders or '.' (dot) for CACHE folder itself
  * @return array associative array with cleanup results
  * @access public
  */
 	function files() {
 		$deleted = $error = array();
 
-		if ($folders = func_get_args()) {
+		$folders = func_get_args();
+		if (empty($folders)) {
+			$folders = array('.', '*');
+		}
+
+		if (count($folders) > 1) {
 			$files = glob(CACHE . '{' . implode(',', $folders) . '}' . DS . '*', GLOB_BRACE);
 		} else {
-			$files = glob(CACHE . '*' . DS . '*');
-			$files = array_merge($files, glob(CACHE . '*'));
+			$files = glob(CACHE . $folders[0] . DS . '*');
 		}
 
 		foreach ($files as $file) {
