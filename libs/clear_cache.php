@@ -86,8 +86,8 @@ class ClearCache {
 				}
 			} elseif(is_dir($file)) {
 				$results = $this->files(substr($file, strlen(CACHE)));
-				$deleted = am($deleted, $results['deleted']);
-				$error = am($error, $results['error']);
+				$deleted = array_merge($deleted, $results['deleted']);
+				$error = array_merge($error, $results['error']);
 				unset($results);
 				if (!in_array($file, array(CACHE . './models', CACHE . './persistent', CACHE . './views'))) {
 					rmdir($file);
