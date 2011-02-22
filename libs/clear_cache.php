@@ -84,6 +84,14 @@ class ClearCache {
 				} else {
 					$error[] = $file;
 				}
+			} elseif(is_dir($file)) {
+				$results = $this->files(substr($file, strlen(CACHE)));
+				$deleted = am($deleted, $results['deleted']);
+				$error = am($error, $results['error']);
+				unset($results);
+				if (!in_array($file, array(CACHE . './models', CACHE . './persistent', CACHE . './views'))) {
+					rmdir($file);
+				}
 			}
 		}
 		return compact('deleted', 'error');
