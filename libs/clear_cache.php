@@ -34,7 +34,16 @@ class ClearCache {
 	function engines() {
 		$result = array();
 
-		$keys = Cache::configured();
+		if (method_exists('Cache', 'configured')) {
+			$keys = Cache::configured();
+		} else {
+			if (PHP5) {
+				$Cache = Cache::getInstance();
+			} else {
+				$Cache =& Cache::getInstance();
+			}
+			$keys = array_keys($Cache->__config);
+		}
 
 		if ($engines = func_get_args()) {
 			$keys = array_intersect($keys, $engines);
