@@ -5,7 +5,7 @@
  * PHP versions 4 and 5
  *
  * Copyright 2010, Marc Ypes, The Netherlands
- * 
+ *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
@@ -104,8 +104,8 @@ class ClearCache {
  * @access public
  */
 	function run() {
-		$files = $this->files();
 		$engines = $this->engines();
+		$files = $this->files();
 
 		return compact('files', 'engines');
 	}
