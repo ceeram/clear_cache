@@ -1,19 +1,24 @@
 Usage:
 
+CakePHP 2.0 (for CakePHP 1.3 use the 1.3 branch)
+
+Make sure you have added the plugin to your app/Config/bootstrap.php
+CakePlugin::loadAll(); or CakePlugin::load('ClearCache');
+
 Run from your console:
-"cake clear_cache"
-or "cake clear_cache files"
-or "cake clear_cache files ."
-or "cake clear_cache files views"
-or "cake clear_cache files models persistent"
-or "cake clear_cache engines"
-or "cake clear_cache engines default"
-or "cake clear_cache engines _cake_core_"
-or "cake clear_cache engines default custom"
+"cake ClearCache.clear_cache"
+or "cake ClearCache.clear_cache files"
+or "cake ClearCache.clear_cache files ."
+or "cake ClearCache.clear_cache files views"
+or "cake ClearCache.clear_cache files models persistent"
+or "cake ClearCache.clear_cache engines"
+or "cake ClearCache.clear_cache engines default"
+or "cake ClearCache.clear_cache engines _cake_core_"
+or "cake ClearCache.clear_cache engines default custom"
 
 Run from your app:
 <?php
-App::import('Libs', 'ClearCache.ClearCache');
+App::import('Lib', 'ClearCache.ClearCache');
 $ClearCache = new ClearCache();
 
 $output = $ClearCache->run();
