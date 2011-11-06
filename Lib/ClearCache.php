@@ -5,7 +5,7 @@
  * PHP versions 4 and 5
  *
  * Copyright 2010, Marc Ypes, The Netherlands
- * 
+ *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
@@ -31,7 +31,7 @@ class ClearCache {
  * @return array associative array with cleanup results
  * @access public
  */
-	function engines() {
+	public function engines() {
 		$result = array();
 
 		$keys = Cache::configured();
@@ -54,7 +54,7 @@ class ClearCache {
  * @return array associative array with cleanup results
  * @access public
  */
-	function files() {
+	public function files() {
 		$deleted = $error = array();
 
 		$folders = func_get_args();
@@ -86,7 +86,7 @@ class ClearCache {
  * @return array associative array with cleanup results
  * @access public
  */
-	function run() {
+	public function run() {
 		$files = $this->files();
 		$engines = $this->engines();
 
