@@ -24,6 +24,11 @@
  */
 class ClearCacheShell extends Shell {
 
+	public function __construct() {
+		Configure::write('Cache.disable', true); 
+		parent::__construct();
+	}
+	
 /**
  * ClearCache instance
  *
