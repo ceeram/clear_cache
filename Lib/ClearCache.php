@@ -31,6 +31,10 @@ class ClearCache {
  * @return array associative array with cleanup results
  */
 	public function engines() {
+		if ($cacheDisabled = (bool) Configure::read('Cache.disable')) {
+			Configure::write('Cache.disable', false);
+		}
+
 		$result = array();
 
 		$keys = Cache::configured();
@@ -41,6 +45,10 @@ class ClearCache {
 
 		foreach ($keys as $key) {
 			$result[$key] = Cache::clear(false, $key);
+		}
+
+		if ($cacheDisabled) {
+			Configure::write('Cache.disable', $cacheDisabled);
 		}
 
 		return $result;
