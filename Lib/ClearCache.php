@@ -2,16 +2,16 @@
 /**
  * ClearCache library class
  *
- * PHP versions 4 and 5
+ * PHP 5
  *
- * Copyright 2010, Marc Ypes, The Netherlands
+ * Copyright 2010-2012, Marc Ypes, The Netherlands
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
  * @package       app
  * @subpackage    app.plugins.clear_cache.libs
- * @copyright     2010 Marc Ypes, The Netherlands
+ * @copyright     2010-2012 Marc Ypes, The Netherlands
  * @author        Ceeram
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
@@ -29,9 +29,12 @@ class ClearCache {
  *
  * @param mixed any amount of strings - keys of configure cache engines
  * @return array associative array with cleanup results
- * @access public
  */
 	public function engines() {
+		if ($cacheDisabled = (bool) Configure::read('Cache.disable')) {
+			Configure::write('Cache.disable', false);
+		}
+
 		$result = array();
 
 		$keys = Cache::configured();
@@ -44,6 +47,10 @@ class ClearCache {
 			$result[$key] = Cache::clear(false, $key);
 		}
 
+		if ($cacheDisabled) {
+			Configure::write('Cache.disable', $cacheDisabled);
+		}
+
 		return $result;
 	}
 
@@ -52,7 +59,6 @@ class ClearCache {
  *
  * @param mixed any amount of strings - names of CACHE subfolders or '.' (dot) for CACHE folder itself
  * @return array associative array with cleanup results
- * @access public
  */
 	public function files() {
 		$deleted = $error = array();
@@ -84,7 +90,6 @@ class ClearCache {
  * Clears content of CACHE subfolders and configured cache engines
  *
  * @return array associative array with cleanup results
- * @access public
  */
 	public function run() {
 		$files = $this->files();
@@ -94,4 +99,3 @@ class ClearCache {
 	}
 
 }
-?>
