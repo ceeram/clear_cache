@@ -26,9 +26,16 @@ App::uses('AppShell', 'Console/Command');
  */
 class ClearCacheShell extends AppShell {
 
-	public function __construct() {
+/**
+ *  Constructs this Shell instance.
+ *
+ * @param ConsoleOutput $stdout
+ * @param ConsoleOutput $stderr
+ * @param ConsoleInput $stdin
+ */
+	public function __construct($stdout = null, $stderr = null, $stdin = null) {
 		Configure::write('Cache.disable', true); 
-		parent::__construct();
+		parent::__construct($stdout, $stderr, $stdin);
 	}
 	
 /**
