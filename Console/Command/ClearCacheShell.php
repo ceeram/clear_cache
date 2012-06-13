@@ -2,19 +2,22 @@
 /**
  * ClearCache shell
  *
- * PHP versions 4 and 5
+ * PHP 5
  *
- * Copyright 2010, Marc Ypes, The Netherlands
+ * Copyright 2010-2012, Marc Ypes, The Netherlands
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
  * @package       app
  * @subpackage    app.plugins.clear_cache.vendors.shells
- * @copyright     2010 Marc Ypes, The Netherlands
+ * @copyright     2010-2012 Marc Ypes, The Netherlands
  * @author        Ceeram
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
+App::uses('AppShell', 'Console/Command');
+App::uses('ClearCache', 'ClearCache.Lib');
 
 /**
  * Helps clear content of CACHE subfolders as well as content in cache engines from console
@@ -22,20 +25,26 @@
  * @package       app
  * @subpackage    app.plugins.clear_cache.Console.Command
  */
-class ClearCacheShell extends Shell {
+class ClearCacheShell extends AppShell {
 
-	public function __construct() {
+/**
+ *  Disables cache and constructs this Shell instance.
+ *
+ * @param ConsoleOutput $stdout
+ * @param ConsoleOutput $stderr
+ * @param ConsoleInput $stdin
+ */
+	public function __construct($stdout = null, $stderr = null, $stdin = null) {
 		Configure::write('Cache.disable', true); 
-		parent::__construct();
+		parent::__construct($stdout, $stderr, $stdin);
 	}
 	
 /**
  * ClearCache instance
  *
  * @var ClearCache
- * @access protected
  */
-	public $_Cleaner;
+	protected $_Cleaner;
 
 /**
  * Main shell method
@@ -43,7 +52,6 @@ class ClearCacheShell extends Shell {
  * Clears content of CACHE subfolders and configured cache engines
  *
  * @return array associative array with cleanup results
- * @access public
  */
 	public function main() {
 		$this->files();
@@ -54,10 +62,9 @@ class ClearCacheShell extends Shell {
  * Clears content of cache engines
  *
  * @return void
- * @access public
  */
 	public function engines() {
-		$output = call_user_func_array(array(&$this->_Cleaner, 'engines'), $this->args);
+		$output = call_user_func_array(array($this->_Cleaner, 'engines'), $this->args);
 
 		foreach ($output as $key => $result) {
 			$this->out($key . ': ' . ($result ? 'cleared' : 'error'));
@@ -68,10 +75,9 @@ class ClearCacheShell extends Shell {
  * Clears content of CACHE subfolders
  *
  * @return void
- * @access public
  */
 	public function files() {
-		$output = call_user_func_array(array(&$this->_Cleaner, 'files'), $this->args);
+		$output = call_user_func_array(array($this->_Cleaner, 'files'), $this->args);
 
 		foreach ($output as $result => $files) {
 			foreach ($files as $file) {
@@ -86,12 +92,9 @@ class ClearCacheShell extends Shell {
  * Initializes $_Cleaner property
  *
  * @return void
- * @access public
  */
 	public function startup() {
-		App::import('Lib', 'ClearCache.ClearCache');
 		$this->_Cleaner = new ClearCache();
 	}
 
 }
-?>
