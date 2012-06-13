@@ -34,6 +34,16 @@ class ClearCacheShell extends Shell {
 	var $_Cleaner;
 
 /**
+ * Disables cache and constructs this Shell instance.
+ *
+ * @param ShellDispatcher $dispatch
+ */
+	function __construct(&$dispatch) {
+		Configure::write('Cache.disable', true); 
+		parent::__construct($dispatch);
+	}
+
+/**
  * Main shell method
  *
  * Clears content of CACHE subfolders and configured cache engines
