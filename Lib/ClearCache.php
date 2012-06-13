@@ -29,7 +29,6 @@ class ClearCache {
  *
  * @param mixed any amount of strings - keys of configure cache engines
  * @return array associative array with cleanup results
- * @access public
  */
 	public function engines() {
 		$result = array();
@@ -52,7 +51,6 @@ class ClearCache {
  *
  * @param mixed any amount of strings - names of CACHE subfolders or '.' (dot) for CACHE folder itself
  * @return array associative array with cleanup results
- * @access public
  */
 	public function files() {
 		$deleted = $error = array();
@@ -84,7 +82,6 @@ class ClearCache {
  * Clears content of CACHE subfolders and configured cache engines
  *
  * @return array associative array with cleanup results
- * @access public
  */
 	public function run() {
 		$files = $this->files();
