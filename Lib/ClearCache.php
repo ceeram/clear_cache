@@ -2,16 +2,16 @@
 /**
  * ClearCache library class
  *
- * PHP versions 4 and 5
+ * PHP 5
  *
- * Copyright 2010, Marc Ypes, The Netherlands
+ * Copyright 2010-2012, Marc Ypes, The Netherlands
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
  * @package       app
  * @subpackage    app.plugins.clear_cache.libs
- * @copyright     2010 Marc Ypes, The Netherlands
+ * @copyright     2010-2012 Marc Ypes, The Netherlands
  * @author        Ceeram
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */

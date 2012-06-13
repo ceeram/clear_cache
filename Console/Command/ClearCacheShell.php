@@ -2,16 +2,16 @@
 /**
  * ClearCache shell
  *
- * PHP versions 4 and 5
+ * PHP 5
  *
- * Copyright 2010, Marc Ypes, The Netherlands
+ * Copyright 2010-2012, Marc Ypes, The Netherlands
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
  * @package       app
  * @subpackage    app.plugins.clear_cache.vendors.shells
- * @copyright     2010 Marc Ypes, The Netherlands
+ * @copyright     2010-2012 Marc Ypes, The Netherlands
  * @author        Ceeram
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
@@ -63,7 +63,7 @@ class ClearCacheShell extends AppShell {
  * @return void
  */
 	public function engines() {
-		$output = call_user_func_array(array(&$this->_Cleaner, 'engines'), $this->args);
+		$output = call_user_func_array(array($this->_Cleaner, 'engines'), $this->args);
 
 		foreach ($output as $key => $result) {
 			$this->out($key . ': ' . ($result ? 'cleared' : 'error'));
@@ -76,7 +76,7 @@ class ClearCacheShell extends AppShell {
  * @return void
  */
 	public function files() {
-		$output = call_user_func_array(array(&$this->_Cleaner, 'files'), $this->args);
+		$output = call_user_func_array(array($this->_Cleaner, 'files'), $this->args);
 
 		foreach ($output as $result => $files) {
 			foreach ($files as $file) {
