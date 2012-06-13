@@ -17,6 +17,7 @@
  */
 
 App::uses('AppShell', 'Console/Command');
+App::uses('ClearCache', 'ClearCache.Lib');
 
 /**
  * Helps clear content of CACHE subfolders as well as content in cache engines from console
@@ -93,7 +94,6 @@ class ClearCacheShell extends AppShell {
  * @return void
  */
 	public function startup() {
-		App::import('Lib', 'ClearCache.ClearCache');
 		$this->_Cleaner = new ClearCache();
 	}
 
