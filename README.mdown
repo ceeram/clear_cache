@@ -1,58 +1,103 @@
-Usage:
+# ClearCache plugin for CakePHP
 
-CakePHP 2.x (for CakePHP 1.3 use the 1.3 branch)
+ClearCache plugin provides several ways how to clear CACHE subfolders and
+cache engines in CakePHP applications.
 
-Make sure you have added the plugin to your app/Config/bootstrap.php
-CakePlugin::loadAll(); or CakePlugin::load('ClearCache');
+## Requirements
 
-Run from your console:
-"cake ClearCache.clear_cache"
-or "cake ClearCache.clear_cache files"
-or "cake ClearCache.clear_cache files ."
-or "cake ClearCache.clear_cache files views"
-or "cake ClearCache.clear_cache files models persistent"
-or "cake ClearCache.clear_cache engines"
-or "cake ClearCache.clear_cache engines default"
-or "cake ClearCache.clear_cache engines _cake_core_"
-or "cake ClearCache.clear_cache engines default custom"
+The master branch has the following requirements:
 
-Run from your app:
-<?php
-App::uses('ClearCache', 'ClearCache.Lib');
-$ClearCache = new ClearCache();
+* CakePHP 2.0 or greater.
+* PHP 5.3.0 or greater.
 
-$output = $ClearCache->run();
+For CakePHP 1.3 use the 1.3 branch.
 
-$output = $ClearCache->files();
-$output = $ClearCache->files('.');
-$output = $ClearCache->files('views');
-$output = $ClearCache->files('models', 'persistent');
+## Installation
 
-$output = $ClearCache->engines();
-$output = $ClearCache->engines('_cake_core_');
-$output = $ClearCache->engines('default', 'custom');
-?>
+* Clone/Copy the files in this directory into `app/Plugin/ClearCache`
+* Ensure the plugin is loaded in `app/Config/bootstrap.php` by calling `CakePlugin::load('ClearCache');`
 
-files() returns an associative array of deleted/undeleted files
-array(
-	'deleted' => array(...),
-	'error'   => array(...)
-)
+# Usage
 
-engines() returns an associative array of result
-array(
-	'default' => true,
-	'_cake_core_'   => false
-)
+## Console Shell
 
-run() returns an associative array of result
-array(
-	'files' => array(
+Run from your APP folder:
+
+	Console/cake ClearCache.clear_cache
+	Console/cake ClearCache.clear_cache files
+	Console/cake ClearCache.clear_cache files .
+	Console/cake ClearCache.clear_cache files views
+	Console/cake ClearCache.clear_cache files models persistent
+	Console/cake ClearCache.clear_cache engines
+	Console/cake ClearCache.clear_cache engines default
+	Console/cake ClearCache.clear_cache engines _cake_core_
+	Console/cake ClearCache.clear_cache engines default custom
+
+## Library Class
+
+Run from your application code:
+
+	App::uses('ClearCache', 'ClearCache.Lib');
+	$ClearCache = new ClearCache();
+
+	$output = $ClearCache->run();
+
+	$output = $ClearCache->files();
+	$output = $ClearCache->files('.');
+	$output = $ClearCache->files('views');
+	$output = $ClearCache->files('models', 'persistent');
+
+	$output = $ClearCache->engines();
+	$output = $ClearCache->engines('_cake_core_');
+	$output = $ClearCache->engines('default', 'custom');
+
+Method files() returns an associative array of deleted/undeleted files:
+
+	array(
 		'deleted' => array(...),
 		'error'   => array(...)
-	),
-	'engines' => array(
+	)
+
+Method engines() returns an associative array of result:
+
+	array(
 		'default' => true,
 		'_cake_core_'   => false
 	)
-)
+
+Method run() returns an associative array of result:
+
+	array(
+		'files' => array(
+			'deleted' => array(...),
+			'error'   => array(...)
+		),
+		'engines' => array(
+			'default' => true,
+			'_cake_core_'   => false
+		)
+	)
+
+## Panel for DebugKit toolbar
+
+In controller, Configure usage of ClearCache panel for DebugKit toolbar:
+
+	public $components = array(
+		'DebugKit.Toolbar' => array(
+			'panels' => array('ClearCache.ClearCache')
+		)
+	);
+
+Optionally, restrict clearing of CACHE subfolders and cache engines through
+DebugKit panel to specific items only (string or array of strings under
+folders/engines keys):
+
+	public $components = array(
+		'DebugKit.Toolbar' => array(
+			'panels' => array('ClearCache.ClearCache'),
+			'clear_cache' => array(
+				'folders' => 'views',
+				'engines' => array('default', 'sessions')
+			)
+		)
+	);
