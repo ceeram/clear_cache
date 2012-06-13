@@ -94,4 +94,3 @@ class ClearCacheShell extends Shell {
 	}
 
 }
-?>
