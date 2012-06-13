@@ -28,7 +28,7 @@ App::uses('ClearCache', 'ClearCache.Lib');
 class ClearCacheShell extends AppShell {
 
 /**
- *  Constructs this Shell instance.
+ *  Disables cache and constructs this Shell instance.
  *
  * @param ConsoleOutput $stdout
  * @param ConsoleOutput $stderr
