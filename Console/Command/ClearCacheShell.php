@@ -16,13 +16,15 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+App::uses('AppShell', 'Console/Command');
+
 /**
  * Helps clear content of CACHE subfolders as well as content in cache engines from console
  *
  * @package       app
  * @subpackage    app.plugins.clear_cache.Console.Command
  */
-class ClearCacheShell extends Shell {
+class ClearCacheShell extends AppShell {
 
 	public function __construct() {
 		Configure::write('Cache.disable', true); 
