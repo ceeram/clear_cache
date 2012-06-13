@@ -35,7 +35,7 @@ class ClearCacheShell extends Shell {
  * @var ClearCache
  * @access protected
  */
-	public $_Cleaner;
+	protected $_Cleaner;
 
 /**
  * Main shell method
