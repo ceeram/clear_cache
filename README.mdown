@@ -23,19 +23,30 @@ For CakePHP 1.3 use the 1.3 branch.
 
 Run from your APP folder:
 
+	# clear all cached files and configured engines
 	Console/cake ClearCache.clear_cache
+
+	# clear all cached files
 	Console/cake ClearCache.clear_cache files
+	# clear just files in CACHE folder
 	Console/cake ClearCache.clear_cache files .
+	# clear just files in CACHE subfolders
+	Console/cake ClearCache.clear_cache files *
+	# clear just files in CACHE/views folder
 	Console/cake ClearCache.clear_cache files views
+	# clear just files in selected CACHE subfolders
 	Console/cake ClearCache.clear_cache files models persistent
+
+	# clear all configured cache engines
 	Console/cake ClearCache.clear_cache engines
-	Console/cake ClearCache.clear_cache engines default
+	# clear just engine named _cake_core_
 	Console/cake ClearCache.clear_cache engines _cake_core_
-	Console/cake ClearCache.clear_cache engines default custom
+	# clear just selected engines
+	Console/cake ClearCache.clear_cache engines default sessions
 
 ## Library Class
 
-Run from your application code:
+Similarly, run from your application code:
 
 	App::uses('ClearCache', 'ClearCache.Lib');
 	$ClearCache = new ClearCache();
@@ -44,6 +55,7 @@ Run from your application code:
 
 	$output = $ClearCache->files();
 	$output = $ClearCache->files('.');
+	$output = $ClearCache->files('*');
 	$output = $ClearCache->files('views');
 	$output = $ClearCache->files('models', 'persistent');
 
@@ -80,7 +92,7 @@ Method run() returns an associative array of result:
 
 ## Panel for DebugKit toolbar
 
-In controller, Configure usage of ClearCache panel for DebugKit toolbar:
+In AppController, configure usage of ClearCache panel for DebugKit toolbar:
 
 	public $components = array(
 		'DebugKit.Toolbar' => array(
@@ -88,7 +100,8 @@ In controller, Configure usage of ClearCache panel for DebugKit toolbar:
 		)
 	);
 
-Optionally, restrict clearing of CACHE subfolders and cache engines through
+Optionally, mainly for situations when debug is disabled and DebugKit is configured
+with `'forceEnable' => true`, it is possible to restrict clearing of CACHE subfolders and cache engines through
 DebugKit panel to specific items only (string or array of strings under
 folders/engines keys):
 
@@ -96,8 +109,10 @@ folders/engines keys):
 		'DebugKit.Toolbar' => array(
 			'panels' => array('ClearCache.ClearCache'),
 			'clear_cache' => array(
-				'folders' => 'views',
-				'engines' => array('default', 'sessions')
+				// allow to clear just files in CACHE/views folder
+				'folders' => 'views'
+				// allow to clear all cache engines at once, and selected ones separately
+				'engines' => array('', 'default', 'sessions'),
 			)
 		)
 	);
