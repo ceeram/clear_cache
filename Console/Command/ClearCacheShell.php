@@ -9,8 +9,6 @@
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @package       app
- * @subpackage    app.plugins.clear_cache.vendors.shells
  * @copyright     2010-2012 Marc Ypes, The Netherlands
  * @author        Ceeram
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -22,13 +20,12 @@ App::uses('ClearCache', 'ClearCache.Lib');
 /**
  * Helps clear content of CACHE subfolders as well as content in cache engines from console
  *
- * @package       app
- * @subpackage    app.plugins.clear_cache.Console.Command
+ * @package       ClearCache.Console.Command
  */
 class ClearCacheShell extends AppShell {
 
 /**
- *  Disables cache and constructs this Shell instance.
+ * Disables cache and constructs this Shell instance.
  *
  * @param ConsoleOutput $stdout
  * @param ConsoleOutput $stderr
