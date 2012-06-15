@@ -16,7 +16,7 @@
 ?>
 <h2><?php echo __d('clear_cache', 'Clear Cache'); ?></h2>
 <div class="debug-info clear-cache-links"><?php
-	$linkUrl = array('plugin' => 'clear_cache', 'controller' => 'toolbar_access', 'prefix' => false);
+	$linkUrl = array('plugin' => 'clear_cache', 'controller' => 'clear_cache', 'prefix' => false);
 	if (empty($content['folders'])) {
 		echo '<p class="info">' . __d('clear_cache', 'No configured/allowed folder names.') . '</p>';
 	} else {

@@ -1,6 +1,6 @@
 <?php
 /**
- * ClearCache ToolbarAccess Controller
+ * ClearCache Controller
  *
  * Allows clear cache from ClearCache panel for DebugKit
  *
@@ -19,18 +19,18 @@ App::uses('ClearCacheAppController', 'ClearCache.Controller');
 App::uses('ClearCache', 'ClearCache.Lib');
 
 /**
- * ToolbarAccess Controller
+ * ClearCache Controller
  *
  * @package       ClearCache.Controller
  */
-class ToolbarAccessController extends ClearCacheAppController {
+class ClearCacheController extends ClearCacheAppController {
 
 /**
  * Controller name
  *
  * @var string
  */
-	public $name = 'ToolbarAccess';
+	public $name = 'ClearCache';
 
 /**
  * This controller doesn't use any model

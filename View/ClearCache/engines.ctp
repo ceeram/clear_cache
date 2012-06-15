@@ -11,7 +11,7 @@
  *
  * @copyright     2010-2012 Marc Ypes, The Netherlands
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- * @package       ClearCache.View.ToolbarAccess
+ * @package       ClearCache.View.ClearCache
  */
 ?>
 <table class="debug-table"><?php

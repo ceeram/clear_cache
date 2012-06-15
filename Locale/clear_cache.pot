@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2012-06-15 01:37+0200\n"
+"POT-Creation-Date: 2012-06-15 02:26+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -17,6 +17,24 @@ msgstr ""
 #: Lib/Panel/ClearCachePanel.php:64
 #: View/Elements/clear_cache_panel.ctp:17
 msgid "Clear Cache"
+msgstr ""
+
+#: View/ClearCache/engines.ctp:18
+msgid "Engine Name"
+msgstr ""
+
+#: View/ClearCache/engines.ctp:18
+#: View/ClearCache/files.ctp:19
+#: View/Elements/clear_cache_panel.ctp:54
+msgid "Result"
+msgstr ""
+
+#: View/ClearCache/files.ctp:19
+msgid "File Name (%s)"
+msgstr ""
+
+#: View/ClearCache/files.ctp:21
+msgid "No files found."
 msgstr ""
 
 #: View/Elements/clear_cache_panel.ctp:21
@@ -35,29 +53,11 @@ msgstr ""
 msgid "All Cache Engines"
 msgstr ""
 
-#: View/Elements/clear_cache_panel.ctp:54
-#: View/ToolbarAccess/engines.ctp:18
-#: View/ToolbarAccess/files.ctp:19
-msgid "Result"
-msgstr ""
-
 #: View/Elements/clear_cache_panel.ctp:56
 msgid "Click on some link above."
 msgstr ""
 
 #: View/Elements/clear_cache_panel.ctp:76
 msgid "Could not fetch ClearCache output."
-msgstr ""
-
-#: View/ToolbarAccess/engines.ctp:18
-msgid "Engine Name"
-msgstr ""
-
-#: View/ToolbarAccess/files.ctp:19
-msgid "File Name (%s)"
-msgstr ""
-
-#: View/ToolbarAccess/files.ctp:21
-msgid "No files found."
 msgstr ""
 
