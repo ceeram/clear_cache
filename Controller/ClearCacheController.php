@@ -80,8 +80,12 @@ class ClearCacheController extends ClearCacheAppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 
-		if (!$this->_isAllowed()) {
-			throw new NotFoundException();
+		if (class_exists('Croogo')) {
+			$this->autoLayout = true;
+		} else {
+			if (!$this->_isAllowed()) {
+				throw new NotFoundException();
+			}
 		}
 
 		$this->_Cleaner = new ClearCache();
@@ -118,6 +122,38 @@ class ClearCacheController extends ClearCacheAppController {
 			$engines[] = array($engine, ($result ? 'cleared' : 'error'));
 		}
 		$this->set(compact('engines'));
+	}
+
+/**
+ * Clears all cache
+ *
+ */
+	public function admin_all() {
+		$result = $this->_Cleaner->run();
+		$files = $engines = 0;
+		if (!empty($result['files']['deleted'])) {
+			$files = count($result['files']['deleted']);
+		}
+		if (!empty($result['engines'])) {
+			$engines = count($result['engines']);
+		}
+		$flash = __('Cleared files: %d and engines: %d', $files, $engines);
+		$this->Session->setFlash($flash);
+		$this->redirect($this->referer());
+	}
+
+/**
+ * @see ClearCacheController::files()
+ */
+	public function admin_files() {
+		$this->setAction('files');
+	}
+
+/**
+ * @see ClearCacheController::engines()
+ */
+	public function admin_engines() {
+		$this->setAction('engines');
 	}
 
 /**
