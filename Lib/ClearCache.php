@@ -24,7 +24,7 @@ class ClearCache {
 /**
  * Clears content of cache engines
  *
- * @param mixed any amount of strings - keys of configure cache engines
+ * @param mixed any amount of strings - keys of configured cache engines
  * @return array associative array with cleanup results
  */
 	public function engines() {
