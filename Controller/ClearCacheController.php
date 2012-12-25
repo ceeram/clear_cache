@@ -108,7 +108,7 @@ class ClearCacheController extends ClearCacheAppController {
 /**
  * Clears content of cache engines
  *
- * @param mixed any amount of strings - keys of configure cache engines
+ * @param mixed any amount of strings - keys of configured cache engines
  * @return void
  */
 	public function engines() {
