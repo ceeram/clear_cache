@@ -14,6 +14,7 @@
  */
 
 App::uses('DebugPanel', 'DebugKit.Lib');
+App::uses('ClearCache', 'ClearCache.Lib');
 
 /**
  * ClearCache Panel for DebugKit.Toolbar
@@ -43,14 +44,21 @@ class ClearCachePanel extends DebugPanel {
  *
  * @var array
  */
-	public $folders = array('');
+	public $folders = array('_all_');
 
 /**
  * Allowed cache engines
  *
  * @var array
  */
-	public $engines = array('');
+	public $engines = array('_all_');
+
+/**
+ * Allowed cache groups
+ *
+ * @var array
+ */
+	public $groups = array('_all_');
 
 /**
  * Constructor
@@ -68,10 +76,13 @@ class ClearCachePanel extends DebugPanel {
 			$this->folders[] = substr($folder, $length);
 		}
 
-		$configured = array_diff(Cache::configured(), array('debug_kit'));
-		$this->engines = array_merge($this->engines, $configured);
+		$engines = array_diff(Cache::configured(), array('debug_kit'));
+		$this->engines = array_merge($this->engines, $engines);
 
-		foreach (array('folders', 'engines') as $property) {
+		$groups = array_keys(ClearCache::getGroups());
+		$this->groups = empty($groups) ? array() : array_merge($this->groups, $groups);
+
+		foreach (array('folders', 'engines', 'groups') as $property) {
 			if (isset($settings['clear_cache'][$property])) {
 				$this->{$property} = (array) $settings['clear_cache'][$property];
 			}
@@ -87,6 +98,7 @@ class ClearCachePanel extends DebugPanel {
 		return array(
 			'folders' => $this->folders,
 			'engines' => $this->engines,
+			'groups' => $this->groups,
 		);
 	}
 }

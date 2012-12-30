@@ -108,7 +108,7 @@ class ClearCacheController extends ClearCacheAppController {
 /**
  * Clears content of cache engines
  *
- * @param mixed any amount of strings - keys of configure cache engines
+ * @param mixed any amount of strings - keys of configured cache engines
  * @return void
  */
 	public function engines() {
@@ -118,6 +118,29 @@ class ClearCacheController extends ClearCacheAppController {
 			$engines[] = array($engine, ($result ? 'cleared' : 'error'));
 		}
 		$this->set(compact('engines'));
+	}
+
+/**
+ * Clears group of cache engines
+ *
+ * @param mixed any amount of strings - keys of configured cache groups
+ * @return void
+ */
+	public function groups() {
+		$output = call_user_func_array(array($this->_Cleaner, 'groups'), $this->params['pass']);
+		$groups = array();
+		foreach ($output as $group => $engines) {
+			$cleared = $error = array();
+			foreach ($engines as $engine => $result) {
+				if ($result) {
+					$cleared[] = $engine;
+				} else {
+					$error[] = $engine;
+				}
+			}
+			$groups[] = array($group, join(', ', $cleared), join(', ', $error));
+		}
+		$this->set(compact('groups'));
 	}
 
 /**
