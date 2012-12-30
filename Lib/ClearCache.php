@@ -84,6 +84,40 @@ class ClearCache {
 	}
 
 /**
+ * Clears group of cache engines
+ *
+ * @param mixed any amount of strings - keys of configured cache groups
+ * @return array associative array with cleanup results
+ */
+	public function groups() {
+		if ($cacheDisabled = (bool) Configure::read('Cache.disable')) {
+			Configure::write('Cache.disable', false);
+		}
+
+		$result = array();
+
+		$groups = $this->_getGroups();
+
+		if ($args = func_get_args()) {
+			$groups = array_intersect_key($groups, array_fill_keys($args, null));
+		}
+
+		foreach ($groups as $group => $engines) {
+			$result[$group] = array();
+
+			foreach ($engines as $engine) {
+				$result[$group][$engine] = Cache::clear(false, $engine);
+			}
+		}
+
+		if ($cacheDisabled) {
+			Configure::write('Cache.disable', $cacheDisabled);
+		}
+
+		return $result;
+	}
+
+/**
  * Clears content of CACHE subfolders and configured cache engines
  *
  * @return array associative array with cleanup results
@@ -95,4 +129,31 @@ class ClearCache {
 		return compact('files', 'engines');
 	}
 
+/**
+ * Get list of groups with their associated cache configurations
+ *
+ * @return array
+ */
+	protected function _getGroups() {
+		$groups = array();
+		$keys = Cache::configured();
+
+		foreach ($keys as $key) {
+			$config = Cache::config($key);
+
+			if (!empty($config['settings']['groups'])) {
+				foreach ($config['settings']['groups'] as $group) {
+					if (!isset($groups[$group])) {
+						$groups[$group] = array();
+					}
+
+					if (!in_array($key, $groups[$group])) {
+						$groups[$group][] = $key;
+					}
+				}
+			}
+		}
+
+		return $groups;
+	}
 }
