@@ -20,13 +20,15 @@
 	if (empty($content['folders'])) {
 		echo '<p class="info">' . __d('clear_cache', 'No configured/allowed folder names.') . '</p>';
 	} else {
+		echo __d('clear_cache', 'Files') . ': ';
 		$linkUrl['action'] = 'files';
 		$last = count($content['folders']) - 1;
 		foreach ($content['folders'] as $key => $fileMask) {
-			echo $this->Html->link(
-				empty($fileMask) ? __d('clear_cache', 'All Cached Files') : $fileMask,
-				empty($fileMask) ? $linkUrl : $linkUrl + array($fileMask)
-			);
+			if (empty($fileMask) || $fileMask == '_all_') {
+				echo $this->Html->link(__d('clear_cache', 'All Cached Files'), $linkUrl);
+			} else {
+				echo $this->Html->link($fileMask, $linkUrl + array($fileMask));
+			}
 			if ($key < $last) {
 				echo '&nbsp;|&nbsp;';
 			}
@@ -37,20 +39,40 @@
 	if (empty($content['engines'])) {
 		echo '<p class="info">' . __d('clear_cache', 'No configured/allowed cache engines.') . '</p>';
 	} else {
+		echo __d('clear_cache', 'Engines') . ': ';
 		$linkUrl['action'] = 'engines';
 		$last = count($content['engines']) - 1;
 		foreach ($content['engines'] as $key => $engine) {
-			echo $this->Html->link(
-				empty($engine) ? __d('clear_cache', 'All Cache Engines') : $engine,
-				empty($engine) ? $linkUrl : $linkUrl + array($engine)
-			);
+			if (empty($engine) || $engine == '_all_') {
+				echo $this->Html->link(__d('clear_cache', 'All Cache Engines'), $linkUrl);
+			} else {
+				echo $this->Html->link($engine, $linkUrl + array($engine));
+			}
 			if ($key < $last) {
 				echo '&nbsp;|&nbsp;';
 			}
 		}
 	}
 ?></div>
-
+<div class="debug-info clear-cache-links"><?php
+	if (empty($content['groups'])) {
+		echo '<p class="info">' . __d('clear_cache', 'No configured/allowed cache groups.') . '</p>';
+	} else {
+		echo __d('clear_cache', 'Groups') . ': ';
+		$linkUrl['action'] = 'groups';
+		$last = count($content['groups']) - 1;
+		foreach ($content['groups'] as $key => $group) {
+			if (empty($group) || $group == '_all_') {
+				echo $this->Html->link(__d('clear_cache', 'All Cache Groups'), $linkUrl);
+			} else {
+				echo $this->Html->link($group, $linkUrl + array($group));
+			}
+			if ($key < $last) {
+				echo '&nbsp;|&nbsp;';
+			}
+		}
+	}
+?></div>
 <h3><?php echo __d('clear_cache', 'Result'); ?></h3>
 <div class="debug-info" id="clear-cache-output">
 	<p class="info"><?php echo __d('clear_cache', 'Click on some link above.'); ?></p>

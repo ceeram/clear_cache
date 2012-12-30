@@ -84,6 +84,22 @@ class ClearCacheShell extends AppShell {
 	}
 
 /**
+ * Clears groups of cache engines
+ *
+ * @return void
+ */
+	public function groups() {
+		$output = call_user_func_array(array($this->_Cleaner, 'groups'), $this->args);
+
+		foreach ($output as $group => $engines) {
+			$this->out($group . ':');
+			foreach ($engines as $engine => $result) {
+				$this->out(' - ' . $engine . ': ' . ($result ? 'cleared' : 'error'));
+			}
+		}
+	}
+
+/**
  * Shell startup
  *
  * Initializes $_Cleaner property
