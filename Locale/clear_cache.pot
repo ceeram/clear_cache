@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2012-06-15 02:26+0200\n"
+"POT-Creation-Date: 2012-12-30 14:07+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Lib/Panel/ClearCachePanel.php:64
+#: Lib/Panel/ClearCachePanel.php:72
 #: View/Elements/clear_cache_panel.ctp:17
 msgid "Clear Cache"
 msgstr ""
@@ -25,7 +25,7 @@ msgstr ""
 
 #: View/ClearCache/engines.ctp:18
 #: View/ClearCache/files.ctp:19
-#: View/Elements/clear_cache_panel.ctp:54
+#: View/Elements/clear_cache_panel.ctp:76
 msgid "Result"
 msgstr ""
 
@@ -37,27 +37,59 @@ msgstr ""
 msgid "No files found."
 msgstr ""
 
+#: View/ClearCache/groups.ctp:18
+msgid "Group Name"
+msgstr ""
+
+#: View/ClearCache/groups.ctp:18
+msgid "Cleared Engines"
+msgstr ""
+
+#: View/ClearCache/groups.ctp:18
+msgid "Failed Engines"
+msgstr ""
+
 #: View/Elements/clear_cache_panel.ctp:21
 msgid "No configured/allowed folder names."
 msgstr ""
 
-#: View/Elements/clear_cache_panel.ctp:27
+#: View/Elements/clear_cache_panel.ctp:23
+msgid "Files"
+msgstr ""
+
+#: View/Elements/clear_cache_panel.ctp:28
 msgid "All Cached Files"
 msgstr ""
 
-#: View/Elements/clear_cache_panel.ctp:38
+#: View/Elements/clear_cache_panel.ctp:40
 msgid "No configured/allowed cache engines."
 msgstr ""
 
-#: View/Elements/clear_cache_panel.ctp:44
+#: View/Elements/clear_cache_panel.ctp:42
+msgid "Engines"
+msgstr ""
+
+#: View/Elements/clear_cache_panel.ctp:47
 msgid "All Cache Engines"
 msgstr ""
 
-#: View/Elements/clear_cache_panel.ctp:56
+#: View/Elements/clear_cache_panel.ctp:59
+msgid "No configured/allowed cache groups."
+msgstr ""
+
+#: View/Elements/clear_cache_panel.ctp:61
+msgid "Groups"
+msgstr ""
+
+#: View/Elements/clear_cache_panel.ctp:66
+msgid "All Cache Groups"
+msgstr ""
+
+#: View/Elements/clear_cache_panel.ctp:78
 msgid "Click on some link above."
 msgstr ""
 
-#: View/Elements/clear_cache_panel.ctp:76
+#: View/Elements/clear_cache_panel.ctp:98
 msgid "Could not fetch ClearCache output."
 msgstr ""
 
