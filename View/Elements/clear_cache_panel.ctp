@@ -24,10 +24,11 @@
 		$linkUrl['action'] = 'files';
 		$last = count($content['folders']) - 1;
 		foreach ($content['folders'] as $key => $fileMask) {
-			echo $this->Html->link(
-				empty($fileMask) ? __d('clear_cache', 'All Cached Files') : $fileMask,
-				empty($fileMask) ? $linkUrl : $linkUrl + array($fileMask)
-			);
+			if ($fileMask == '_all_') {
+				echo $this->Html->link(__d('clear_cache', 'All Cached Files'), $linkUrl);
+			} else {
+				echo $this->Html->link($fileMask, $linkUrl + array($fileMask));
+			}
 			if ($key < $last) {
 				echo '&nbsp;|&nbsp;';
 			}
@@ -42,10 +43,11 @@
 		$linkUrl['action'] = 'engines';
 		$last = count($content['engines']) - 1;
 		foreach ($content['engines'] as $key => $engine) {
-			echo $this->Html->link(
-				empty($engine) ? __d('clear_cache', 'All Cache Engines') : $engine,
-				empty($engine) ? $linkUrl : $linkUrl + array($engine)
-			);
+			if ($engine == '_all_') {
+				echo $this->Html->link(__d('clear_cache', 'All Cache Engines'), $linkUrl);
+			} else {
+				echo $this->Html->link($engine, $linkUrl + array($engine));
+			}
 			if ($key < $last) {
 				echo '&nbsp;|&nbsp;';
 			}
@@ -60,10 +62,11 @@
 		$linkUrl['action'] = 'groups';
 		$last = count($content['groups']) - 1;
 		foreach ($content['groups'] as $key => $group) {
-			echo $this->Html->link(
-				empty($group) ? __d('clear_cache', 'All Cache Groups') : $group,
-				empty($group) ? $linkUrl : $linkUrl + array($group)
-			);
+			if ($group == '_all_') {
+				echo $this->Html->link(__d('clear_cache', 'All Cache Groups'), $linkUrl);
+			} else {
+				echo $this->Html->link($group, $linkUrl + array($group));
+			}
 			if ($key < $last) {
 				echo '&nbsp;|&nbsp;';
 			}

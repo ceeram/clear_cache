@@ -44,21 +44,21 @@ class ClearCachePanel extends DebugPanel {
  *
  * @var array
  */
-	public $folders = array('');
+	public $folders = array('_all_');
 
 /**
  * Allowed cache engines
  *
  * @var array
  */
-	public $engines = array('');
+	public $engines = array('_all_');
 
 /**
  * Allowed cache groups
  *
  * @var array
  */
-	public $groups = array('');
+	public $groups = array('_all_');
 
 /**
  * Constructor

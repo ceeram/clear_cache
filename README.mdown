@@ -126,7 +126,8 @@ In AppController, configure usage of ClearCache panel for DebugKit toolbar:
 Optionally, mainly for situations when debug is disabled and DebugKit is configured
 with `'forceEnable' => true`, it is possible to restrict clearing of CACHE subfolders
 and cache engines/groups through DebugKit panel to specific items only (string or
-array of strings under folders/engines/groups keys):
+array of strings under folders/engines/groups keys) and/or enable every ones with
+special string _all_:
 
 	public $components = array(
 		'DebugKit.Toolbar' => array(
@@ -135,9 +136,9 @@ array of strings under folders/engines/groups keys):
 				// allow to clear just files in CACHE/views folder
 				'folders' => 'views'
 				// allow to clear all cache engines at once, and selected ones separately
-				'engines' => array('', 'default', 'sessions'),
+				'engines' => array('_all_', 'default', 'sessions'),
 				// allow to clear all cache groups at once, and selected ones separately
-				'groups' => array('', 'comment', 'post'),
+				'groups' => array('_all_', 'comment', 'post'),
 			)
 		)
 	);
