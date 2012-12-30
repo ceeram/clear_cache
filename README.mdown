@@ -44,6 +44,13 @@ Run from your APP folder:
 	# clear just selected engines
 	Console/cake ClearCache.clear_cache engines default sessions
 
+	# clear all configured cache groups
+	Console/cake ClearCache.clear_cache groups
+	# clear just cache group named comment
+	Console/cake ClearCache.clear_cache groups comment
+	# clear just selected groups
+	Console/cake ClearCache.clear_cache groups comment post
+
 ## Library Class
 
 Similarly, run from your application code:
@@ -63,6 +70,10 @@ Similarly, run from your application code:
 	$output = $ClearCache->engines('_cake_core_');
 	$output = $ClearCache->engines('default', 'custom');
 
+	$output = $ClearCache->groups();
+	$output = $ClearCache->groups('comment');
+	$output = $ClearCache->groups('comment', 'post');
+
 Method files() returns an associative array of deleted/undeleted files:
 
 	array(
@@ -75,6 +86,18 @@ Method engines() returns an associative array of result:
 	array(
 		'default' => true,
 		'_cake_core_'   => false
+	)
+
+Method groups() returns an associative array of result:
+
+	array(
+		'comment' => array(
+			'default' => true,
+		),
+		'post' => array(
+			'default' => true,
+			'advanced' => true,
+		),
 	)
 
 Method run() returns an associative array of result:
@@ -101,9 +124,9 @@ In AppController, configure usage of ClearCache panel for DebugKit toolbar:
 	);
 
 Optionally, mainly for situations when debug is disabled and DebugKit is configured
-with `'forceEnable' => true`, it is possible to restrict clearing of CACHE subfolders and cache engines through
-DebugKit panel to specific items only (string or array of strings under
-folders/engines keys):
+with `'forceEnable' => true`, it is possible to restrict clearing of CACHE subfolders
+and cache engines/groups through DebugKit panel to specific items only (string or
+array of strings under folders/engines/groups keys):
 
 	public $components = array(
 		'DebugKit.Toolbar' => array(
@@ -113,6 +136,15 @@ folders/engines keys):
 				'folders' => 'views'
 				// allow to clear all cache engines at once, and selected ones separately
 				'engines' => array('', 'default', 'sessions'),
+				// allow to clear all cache groups at once, and selected ones separately
+				'groups' => array('', 'comment', 'post'),
 			)
 		)
 	);
+
+## Clearing cache groups
+
+Cache groups were introduced in CakePHP 2.2 and they are shared across all cache
+configs using the same engine and same prefix. Despite of this, ClearCache plugin
+clears WHOLE cache groups - even if they're specified in cache configurations with different
+cache engines and different prefixes.
