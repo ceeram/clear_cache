@@ -34,14 +34,14 @@ class ClearCache {
 
 		$result = array();
 
-		$keys = Cache::configured();
+		$engines = Cache::configured();
 
-		if ($engines = func_get_args()) {
-			$keys = array_intersect($keys, $engines);
+		if ($args = func_get_args()) {
+			$engines = array_intersect($engines, $args);
 		}
 
-		foreach ($keys as $key) {
-			$result[$key] = Cache::clear(false, $key);
+		foreach ($engines as $engine) {
+			$result[$engine] = Cache::clear(false, $engine);
 		}
 
 		if ($cacheDisabled) {
