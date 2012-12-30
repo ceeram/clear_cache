@@ -84,7 +84,7 @@ class ClearCache {
 	}
 
 /**
- * Clears group of cache engines
+ * Clears groups of cache engines
  *
  * @param mixed any amount of strings - keys of configured cache groups
  * @return array associative array with cleanup results
