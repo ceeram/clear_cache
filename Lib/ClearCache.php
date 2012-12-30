@@ -96,7 +96,7 @@ class ClearCache {
 
 		$result = array();
 
-		$groups = $this->_getGroups();
+		$groups = self::getGroups();
 
 		if ($args = func_get_args()) {
 			$groups = array_intersect_key($groups, array_fill_keys($args, null));
@@ -134,7 +134,7 @@ class ClearCache {
  *
  * @return array
  */
-	protected function _getGroups() {
+	public static function getGroups() {
 		$groups = array();
 		$keys = Cache::configured();
 

@@ -121,6 +121,29 @@ class ClearCacheController extends ClearCacheAppController {
 	}
 
 /**
+ * Clears group of cache engines
+ *
+ * @param mixed any amount of strings - keys of configured cache groups
+ * @return void
+ */
+	public function groups() {
+		$output = call_user_func_array(array($this->_Cleaner, 'groups'), $this->params['pass']);
+		$groups = array();
+		foreach ($output as $group => $engines) {
+			$cleared = $error = array();
+			foreach ($engines as $engine => $result) {
+				if ($result) {
+					$cleared[] = $engine;
+				} else {
+					$error[] = $engine;
+				}
+			}
+			$groups[] = array($group, join(', ', $cleared), join(', ', $error));
+		}
+		$this->set(compact('groups'));
+	}
+
+/**
  * Checks if clear cache request is allowed
  *
  * @return boolean

@@ -20,6 +20,7 @@
 	if (empty($content['folders'])) {
 		echo '<p class="info">' . __d('clear_cache', 'No configured/allowed folder names.') . '</p>';
 	} else {
+		echo __d('clear_cache', 'Files') . ': ';
 		$linkUrl['action'] = 'files';
 		$last = count($content['folders']) - 1;
 		foreach ($content['folders'] as $key => $fileMask) {
@@ -37,6 +38,7 @@
 	if (empty($content['engines'])) {
 		echo '<p class="info">' . __d('clear_cache', 'No configured/allowed cache engines.') . '</p>';
 	} else {
+		echo __d('clear_cache', 'Engines') . ': ';
 		$linkUrl['action'] = 'engines';
 		$last = count($content['engines']) - 1;
 		foreach ($content['engines'] as $key => $engine) {
@@ -50,7 +52,24 @@
 		}
 	}
 ?></div>
-
+<div class="debug-info clear-cache-links"><?php
+	if (empty($content['groups'])) {
+		echo '<p class="info">' . __d('clear_cache', 'No configured/allowed cache groups.') . '</p>';
+	} else {
+		echo __d('clear_cache', 'Groups') . ': ';
+		$linkUrl['action'] = 'groups';
+		$last = count($content['groups']) - 1;
+		foreach ($content['groups'] as $key => $group) {
+			echo $this->Html->link(
+				empty($group) ? __d('clear_cache', 'All Cache Groups') : $group,
+				empty($group) ? $linkUrl : $linkUrl + array($group)
+			);
+			if ($key < $last) {
+				echo '&nbsp;|&nbsp;';
+			}
+		}
+	}
+?></div>
 <h3><?php echo __d('clear_cache', 'Result'); ?></h3>
 <div class="debug-info" id="clear-cache-output">
 	<p class="info"><?php echo __d('clear_cache', 'Click on some link above.'); ?></p>
