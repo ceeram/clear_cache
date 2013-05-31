@@ -17,9 +17,9 @@
 <table class="debug-table"><?php
 	$mask = empty($this->params['pass']) ? '.*' : implode(' ', $this->params['pass']);
 	$headers = array(__d('clear_cache', 'File Name (%s)', $mask), __d('clear_cache', 'Result'));
-	if (empty($files)) {
+	if (empty($files)):
 		$files = array(array(__d('clear_cache', 'No files found.'), ''));
-	}
+	endif;
 	echo $this->Html->tableHeaders($headers);
 	echo $this->Html->tableCells($files);
 ?></table>
