@@ -22,6 +22,11 @@
 	} else {
 		echo __d('clear_cache', 'Files') . ': ';
 		$linkUrl['action'] = 'files';
+
+		foreach (Configure::read('Routing.prefixes') as $prefix) {
+			$linkUrl[$prefix] = false;
+		}
+		
 		$last = count($content['folders']) - 1;
 		foreach ($content['folders'] as $key => $fileMask) {
 			if (empty($fileMask) || $fileMask == '_all_') {
