@@ -95,6 +95,8 @@ class ClearCachePanel extends DebugPanel {
  * @return array contents for panel
  */
 	public function beforeRender(Controller $controller) {
+		$controller->helpers = array_merge($controller->helpers, array('ClearCache.ClearLink'));
+		
 		return array(
 			'folders' => $this->folders,
 			'engines' => $this->engines,
