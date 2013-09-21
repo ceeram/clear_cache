@@ -63,9 +63,11 @@ class ClearCacheShell extends AppShell {
 	public function engines() {
 		$output = call_user_func_array(array($this->_Cleaner, 'engines'), $this->args);
 
+		$this->out(__('<success>Engines cleaned:</success> %d', count($output)), 2);
 		foreach ($output as $key => $result) {
 			$this->out("\t$key: " . ($result ? 'cleared' : 'error'), 1, Shell::VERBOSE);
 		}
+		$this->out(null, 1, Shell::VERBOSE);
 	}
 
 /**
@@ -76,11 +78,13 @@ class ClearCacheShell extends AppShell {
 	public function files() {
 		$output = call_user_func_array(array($this->_Cleaner, 'files'), $this->args);
 
+		$this->out(__('<success>Files cleaned:</success> %d', count($output['deleted'])), 2);
 		foreach ($output as $result => $files) {
 			foreach ($files as $file) {
 				$this->out("\t$result: " . $file, 1, Shell::VERBOSE);
 			}
 		}
+		$this->out(null, 1, Shell::VERBOSE);
 	}
 
 /**
@@ -91,12 +95,15 @@ class ClearCacheShell extends AppShell {
 	public function groups() {
 		$output = call_user_func_array(array($this->_Cleaner, 'groups'), $this->args);
 
+		$cleaned = count(Hash::flatten($output));
+		$this->out(__('<success>Groups cleaned:</success> %d', $cleaned), 2);
 		foreach ($output as $group => $engines) {
 			$this->out("\t$group:", 1, Shell::VERBOSE);
 			foreach ($engines as $engine => $result) {
 				$this->out("\t - $engine: " . ($result ? 'cleared' : 'error'), 1, Shell::VERBOSE);
 			}
 		}
+		$this->out(null, 1, Shell::VERBOSE);
 	}
 
 /**
