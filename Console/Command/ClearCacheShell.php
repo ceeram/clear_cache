@@ -64,7 +64,7 @@ class ClearCacheShell extends AppShell {
 		$output = call_user_func_array(array($this->_Cleaner, 'engines'), $this->args);
 
 		foreach ($output as $key => $result) {
-			$this->out($key . ': ' . ($result ? 'cleared' : 'error'));
+			$this->out("\t$key: " . ($result ? 'cleared' : 'error'), 1, Shell::VERBOSE);
 		}
 	}
 
@@ -78,7 +78,7 @@ class ClearCacheShell extends AppShell {
 
 		foreach ($output as $result => $files) {
 			foreach ($files as $file) {
-				$this->out($result . ': ' . $file);
+				$this->out("\t$result: " . $file, 1, Shell::VERBOSE);
 			}
 		}
 	}
@@ -92,9 +92,9 @@ class ClearCacheShell extends AppShell {
 		$output = call_user_func_array(array($this->_Cleaner, 'groups'), $this->args);
 
 		foreach ($output as $group => $engines) {
-			$this->out($group . ':');
+			$this->out("\t$group:", 1, Shell::VERBOSE);
 			foreach ($engines as $engine => $result) {
-				$this->out(' - ' . $engine . ': ' . ($result ? 'cleared' : 'error'));
+				$this->out("\t - $engine: " . ($result ? 'cleared' : 'error'), 1, Shell::VERBOSE);
 			}
 		}
 	}
