@@ -25,6 +25,13 @@ App::uses('ClearCache', 'ClearCache.Lib');
 class ClearCacheShell extends AppShell {
 
 /**
+ * ClearCache instance
+ *
+ * @var ClearCache
+ */
+	protected $_Cleaner;
+
+/**
  * Disables cache and constructs this Shell instance.
  *
  * @param ConsoleOutput $stdout
@@ -35,13 +42,6 @@ class ClearCacheShell extends AppShell {
 		Configure::write('Cache.disable', true);
 		parent::__construct($stdout, $stderr, $stdin);
 	}
-
-/**
- * ClearCache instance
- *
- * @var ClearCache
- */
-	protected $_Cleaner;
 
 /**
  * Main shell method
