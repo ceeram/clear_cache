@@ -3,7 +3,7 @@
  * CakePHP ClearCacheShell plugin
  *
  * Alias for ComposerShell
- * to shorten `Console/cake ClearCacheShell.composer` to `Console/cake ClearCacheShell.cc`
+ * to shorten `Console/cake ClearCacheShell.clear_cache` to `Console/cake ClearCacheShell.cc`
  *
  * @copyright       Copyright © 2014 Oxicode (http://Oxicode.io)
  * @link            http://opauth.org
