@@ -67,7 +67,7 @@ class ClearCacheController extends ClearCacheAppController {
  * @param CakeResponse $response
  */
 	public function __construct($request = null, $response = null) {
-		Configure::write('Cache.disable', true); 
+		Configure::write('Cache.disable', true);
 		parent::__construct($request, $response);
 	}
 

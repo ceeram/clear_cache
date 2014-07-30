@@ -51,6 +51,16 @@ Run from your APP folder:
 	# clear just selected groups
 	Console/cake ClearCache.clear_cache groups comment post
 
+By default, running the shell will only display a total number of items cleaned.
+Use the `-v` flag to get list of items deleted:
+
+	# clear all cached files and configured engines
+	Console/cake ClearCache.clear_cache -v
+	# clear all cached files
+	Console/cake ClearCache.clear_cache files -v
+	# clear just engine named _cake_core_
+	Console/cake ClearCache.clear_cache engines _cake_core_ -v
+
 ## Library Class
 
 Similarly, run from your application code:

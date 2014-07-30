@@ -28,7 +28,7 @@ class ClearCache {
  * @return array associative array with cleanup results
  */
 	public function engines() {
-		if ($cacheDisabled = (bool) Configure::read('Cache.disable')) {
+		if ($cacheDisabled = (bool)Configure::read('Cache.disable')) {
 			Configure::write('Cache.disable', false);
 		}
 
@@ -90,7 +90,7 @@ class ClearCache {
  * @return array associative array with cleanup results
  */
 	public function groups() {
-		if ($cacheDisabled = (bool) Configure::read('Cache.disable')) {
+		if ($cacheDisabled = (bool)Configure::read('Cache.disable')) {
 			Configure::write('Cache.disable', false);
 		}
 

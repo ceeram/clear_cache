@@ -84,7 +84,7 @@ class ClearCachePanel extends DebugPanel {
 
 		foreach (array('folders', 'engines', 'groups') as $property) {
 			if (isset($settings['clear_cache'][$property])) {
-				$this->{$property} = (array) $settings['clear_cache'][$property];
+				$this->{$property} = (array)$settings['clear_cache'][$property];
 			}
 		}
 	}
