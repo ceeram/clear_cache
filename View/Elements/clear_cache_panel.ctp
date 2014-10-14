@@ -18,9 +18,10 @@
 <div class="debug-info clear-cache-links"><?php
 	$linkUrl = array('plugin' => 'clear_cache', 'controller' => 'clear_cache', 'prefix' => false);
 
-	foreach (Configure::read('Routing.prefixes') as $prefix) {
+	$routingPrefixes = (array)Configure::read('Routing.prefixes');
+	foreach ($routingPrefixes as $prefix):
 		$linkUrl[$prefix] = false;
-	}
+	endforeach;
 
 	if (empty($content['folders'])):
 		echo '<p class="info">' . __d('clear_cache', 'No configured/allowed folder names.') . '</p>';
@@ -29,7 +30,7 @@
 		$linkUrl['action'] = 'files';
 		$last = count($content['folders']) - 1;
 		foreach ($content['folders'] as $key => $fileMask):
-			if (empty($fileMask) || $fileMask == '_all_'):
+			if (empty($fileMask) || $fileMask === '_all_'):
 				echo $this->Html->link(__d('clear_cache', 'All Cached Files'), $linkUrl);
 			else:
 				echo $this->Html->link($fileMask, $linkUrl + array($fileMask));
@@ -47,13 +48,14 @@
 		echo __d('clear_cache', 'Engines') . ': ';
 		$linkUrl['action'] = 'engines';
 
-		foreach (Configure::read('Routing.prefixes') as $prefix) {
+		$routingPrefixes = (array)Configure::read('Routing.prefixes');
+		foreach ($routingPrefixes as $prefix):
 			$linkUrl[$prefix] = false;
-		}
+		endforeach;
 
 		$last = count($content['engines']) - 1;
 		foreach ($content['engines'] as $key => $engine):
-			if (empty($engine) || $engine == '_all_'):
+			if (empty($engine) || $engine === '_all_'):
 				echo $this->Html->link(__d('clear_cache', 'All Cache Engines'), $linkUrl);
 			else:
 				echo $this->Html->link($engine, $linkUrl + array($engine));
@@ -71,13 +73,14 @@
 		echo __d('clear_cache', 'Groups') . ': ';
 		$linkUrl['action'] = 'groups';
 
-		foreach (Configure::read('Routing.prefixes') as $prefix) {
+		$routingPrefixes = (array)Configure::read('Routing.prefixes');
+		foreach ($routingPrefixes as $prefix):
 			$linkUrl[$prefix] = false;
-		}
+		endforeach;
 
 		$last = count($content['groups']) - 1;
 		foreach ($content['groups'] as $key => $group):
-			if (empty($group) || $group == '_all_'):
+			if (empty($group) || $group === '_all_'):
 				echo $this->Html->link(__d('clear_cache', 'All Cache Groups'), $linkUrl);
 			else:
 				echo $this->Html->link($group, $linkUrl + array($group));
