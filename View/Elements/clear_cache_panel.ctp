@@ -18,7 +18,8 @@
 <div class="debug-info clear-cache-links"><?php
 	$linkUrl = array('plugin' => 'clear_cache', 'controller' => 'clear_cache', 'prefix' => false);
 
-	foreach (Configure::read('Routing.prefixes') as $prefix) {
+	$routingPrefixes = (array)Configure::read('Routing.prefixes');
+	foreach ($routingPrefixes as $prefix) {
 		$linkUrl[$prefix] = false;
 	}
 
@@ -47,7 +48,8 @@
 		echo __d('clear_cache', 'Engines') . ': ';
 		$linkUrl['action'] = 'engines';
 
-		foreach (Configure::read('Routing.prefixes') as $prefix) {
+		$routingPrefixes = (array)Configure::read('Routing.prefixes');
+		foreach ($routingPrefixes as $prefix) {
 			$linkUrl[$prefix] = false;
 		}
 
@@ -71,7 +73,8 @@
 		echo __d('clear_cache', 'Groups') . ': ';
 		$linkUrl['action'] = 'groups';
 
-		foreach (Configure::read('Routing.prefixes') as $prefix) {
+		$routingPrefixes = (array)Configure::read('Routing.prefixes');
+		foreach ($routingPrefixes as $prefix) {
 			$linkUrl[$prefix] = false;
 		}
 
