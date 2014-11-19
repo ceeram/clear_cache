@@ -103,11 +103,11 @@ DEBUGKIT.clearCache = function () {
 	var $ = DEBUGKIT.$;
 	return {
 		init : function () {
-			var cacheLinks = $('div.clear-cache-links').find('a');
-			var cacheOutput = $('#clear-cache-output');
+			var cacheLinks = DEBUGKIT.$('div.clear-cache-links').find('a');
+			var cacheOutput = DEBUGKIT.$('#clear-cache-output');
 			var clearCache = function (event) {
 				event.preventDefault();
-				var request = $.ajax({
+				var request = DEBUGKIT.$.ajax({
 					url: this.href,
 					success : function (response) {
 						cacheOutput.html(response);
